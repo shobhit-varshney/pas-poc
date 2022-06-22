@@ -1,6 +1,7 @@
 import Nav from "../../Layouts/Content/Nav";
 import Content from "./../../Layouts/Content/index";
 import EnhancedTable from "./../../Components/EnhancedTable";
+import Graph from "./../../Pages/Graph/Graph"
 import { useEffect, useState } from "react";
 
 const headCells = [
@@ -81,6 +82,7 @@ const License = () => {
     <Nav>
       <Content>
         <EnhancedTable headCells={headCells} data={licData} />
+        <Graph/>
       </Content>
     </Nav>
   );
