@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import "./Graph.css"
+import Pie from "./Pie"
+import Gauge from "./Gauge"
+import SingleStat from "./SingleStat"
  
 const Graph=()=>
 {
@@ -39,7 +42,7 @@ const Graph=()=>
 
   const pie = {
     
-  };
+  };  
 
   const discrete= {
 
@@ -110,15 +113,18 @@ const Graph=()=>
       </div>
       <div>
       <p>Single Stat</p>
-        <ReactEcharts option={singleStat} />
+        <SingleStat></SingleStat>
+        {/* <ReactEcharts option={singleStat} /> */}
       </div>
       <div>
       <p>Gauge</p>
-      <ReactEcharts option={gauge} />
+        <Gauge></Gauge>
+      {/* <ReactEcharts option={gauge} /> */}
       </div>
       <div>
-      <p>Pie Chart</p>
-        <ReactEcharts option={pie} />
+        <p>Pie Chart</p>
+      <Pie></Pie>
+        {/* <ReactEcharts option={pie} /> */}
       </div>
       <div>
       <p>Discrete Panel</p>
