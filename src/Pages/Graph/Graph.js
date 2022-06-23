@@ -539,16 +539,12 @@ var genFormatter = (series) => {
       <h3>Graphs</h3>
       <div className="flex-container">
       <div>
-        <p>Heat Map</p>
-        <ReactEcharts theme={'dark'} option={heatMap} />
+        <p>Rejection code Heatmap</p>
+        <ReactEcharts option={heatMap} />
       </div>
       <div>
-      <p>Table</p>
-      <ReactEcharts option={table} />
-      </div>
-      <div>
-      <p>Point Chart</p>
-        <ReactEcharts theme='dark' option={point} />
+      <p>TotalDuration by D_MachId</p>
+        <ReactEcharts option={point} />
       </div>
       <div>
       <p>Bar Chart</p>
@@ -582,8 +578,12 @@ var genFormatter = (series) => {
       <ReactEcharts option={discrete} />
       </div>
       <div>
-      <p>LCD Gauge</p>
+      <p>OEE Summary by MX</p>
         <ReactEcharts option={lcd} />
+      </div>
+      <div>
+      <p>Table</p>
+      <ReactEcharts option={table} />
       </div>
       </div>
     </div>
