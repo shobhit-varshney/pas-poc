@@ -70,6 +70,7 @@ const Graph=()=>
 
   const point = {
     title: {
+      top: '10%',
       text: 'TotalDuration by D_MachID ',
       left: 'center'
     },
@@ -80,15 +81,16 @@ const Graph=()=>
       scale: true
     },
     grid: {
-      top: '10%',
-      height: '400px',
-      widht: 'auto',
-      right: '40%'
+      top: '20%',
+      height: '60%',
+      widht: '10%',
+      right: '52%'
     },
     legend: {
       icon: 'rect',
-      left: '62%',
-      top: '10%',
+      left: '48%',
+      right: '60%',
+      top: '20%',
       orient: 'vertical',
       data: ['Machine1', 'Machine2', 'Machine3'],
       formatter: (name) => {
@@ -391,7 +393,7 @@ const Graph=()=>
       </div>
       <div>
       <p>Point Chart</p>
-        <ReactEcharts theme='dark' option={point} options={{ maintainAspectRatio: true }} />
+        <ReactEcharts theme='dark' option={point} />
       </div>
       <div>
       <p>Bar Chart</p>
