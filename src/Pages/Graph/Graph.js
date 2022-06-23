@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 import "./Graph.css"
-
+import Pie from "./Pie"
+import Gauge from "./Gauge"
+import SingleStat from "./SingleStat"
+ 
 // Heatmap Data Feed section------------
 const hours = [
   1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30
@@ -14,6 +17,7 @@ const data = [[0, 9, 50], [0, 10, 50], [0, 20, 60], [0, 3, 70], [0, 4, 80], [0, 
     return [item[1], item[0], item[2] || '-'];
 });
 // end-----------
+
 const Graph=()=>
 {
   
@@ -94,7 +98,7 @@ const Graph=()=>
 
   const pie = {
     
-  };
+  };  
 
   const discrete= {
 
@@ -165,15 +169,18 @@ const Graph=()=>
       </div>
       <div>
       <p>Single Stat</p>
-        <ReactEcharts option={singleStat} />
+        <SingleStat></SingleStat>
+        {/* <ReactEcharts option={singleStat} /> */}
       </div>
       <div>
       <p>Gauge</p>
-      <ReactEcharts option={gauge} />
+        <Gauge></Gauge>
+      {/* <ReactEcharts option={gauge} /> */}
       </div>
       <div>
-      <p>Pie Chart</p>
-        <ReactEcharts option={pie} />
+        <p>Pie Chart</p>
+      <Pie></Pie>
+        {/* <ReactEcharts option={pie} /> */}
       </div>
       <div>
       <p>Discrete Panel</p>
