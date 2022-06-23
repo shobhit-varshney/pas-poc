@@ -20,7 +20,26 @@ const data = [[0, 9, 50], [0, 10, 50], [0, 20, 60], [0, 3, 70], [0, 4, 80], [0, 
 
 const Graph=()=>
 {
-  
+  var series = [{
+    name: 'M1',
+    data: [100, 115, 165, 107, 67]
+}, {
+    name: 'M2',
+    data: [85, 106, 129, 161, 123]
+}, {
+    name: 'M3',
+    data: [67, 87, 86, 167, 157]
+}]
+
+var genFormatter = (series) => {
+    return (param) => {
+        let sum = 0;
+        series.forEach(item => {
+            sum += item.data[param.dataIndex];
+        });
+        return sum
+    }
+};
   const heatMap = {
     
       tooltip: {
@@ -321,15 +340,147 @@ const Graph=()=>
   };
 
   const bar = {
-    
-  };
+    color: ['#3398DB', '#5528DB', '#ff00DB', '#3300DB', '#de3423'],
+ 
+    xAxis : [
+        {
+            type : 'category',
+            axisLabel: {
+              inside: false,
+              color: '#fff'
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+        }
+    ],
+    legend: {
+      data: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6'],
+      orient: "vertical",
+      right: "0%",
+      top:"25%"
+    },
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'M1',
+            type:'bar',
+            stack: 'stack',
+            data:[3000, , , , ,,,]
+        }, {
+            name:'M2',
+            type:'bar',
+            stack: 'stack',
+            data:[, 2500, , , ,,,]
+        }, {
+            name:'M3',
+            type:'bar',
+            stack: 'stack',
+            data:[, , 2000, , ,,,]
+        }, {
+            name:'M4',
+            type:'bar',
+            stack: 'stack',
+            data:[, , , 1500, ,,,]
+        }, {
+            name:'M5',
+            type:'bar',
+            stack: 'stack',
+            data:[, , , , 1000,,,]
+        },  {
+            name:'M6',
+            type:'bar',
+            stack: 'stack',
+            data:[, , , , ,500,,]
+        }
+    ]
+};
+//for references : https://stackoverflow.com/questions/52771079/echarts-display-corresponding-legend-for-each-bar
 
   const stackedBar ={
-
+    legend: {
+      orient: 'vertical',
+      right: "0%",
+      top: 'center',
+      formatter: "40",        
+    },
+  title: {
+    text: 'Day output'
+  },
+  xAxis: {
+      data: ['D1', 'D2', 'D3', 'D4']
+    },
+    yAxis: {type: 'value'},
+    series: series.map((item, index) => Object.assign(item, {
+      type: 'bar',
+      stack: true,
+      label: {
+          show: index = false,
+          formatter: genFormatter(series),
+          fontSize: 20,
+          color: 'black',
+          position: 'top'
+      },
+  }))
   }
 
   const line = {
-    
+    xAxis: [{
+      type: 'category',
+      boundaryGap: false,
+      
+      axisLine: {
+        lineStyle: {
+          type: "solid",
+          width: 5,
+          color:'green'
+        },
+        onZero:true
+      },
+      axisLabel:{
+        color:"black"
+      },
+      onZero: true
+  }],
+    yAxis: {
+      min:0,
+      type:'value'
+    },
+    series: [
+     
+      {
+        type: 'line',
+        showSymbol: false,
+        smooth: true,
+        color:"yellow",
+        width:5,
+        markLine: {
+          symbol: ['none', 'none'],
+          label: {show: false},
+          data: [
+            {xAxis: 0},
+              {xAxis: 5000},
+              {xAxis: 7500},
+              {xAxis: 1000},
+            
+          ],
+          lineStyle:{
+            type:'solid',
+            color:'black'
+          }
+      },
+      data: [0, 5000,7500, 1000],
+
+      }
+    ]
+  
   };
 
   const singleStat = {
