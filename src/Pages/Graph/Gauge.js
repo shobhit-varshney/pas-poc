@@ -110,4 +110,3 @@ function Gauge() {
   return <ReactEcharts option={option} />;
 }
 export default Gauge;
-
