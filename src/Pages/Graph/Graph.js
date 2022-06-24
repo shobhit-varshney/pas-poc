@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useRef } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import "./Graph.css"
 import Pie from "./Pie"
@@ -12,18 +12,31 @@ import StackedBar  from './StackedBar';
 import Line from './Line'
 import Discrete from './Discrete'
 import * as echarts from 'echarts';
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
+
 
 
 
 
 const Graph = () => {
-  
+
+  const inputRef = useRef(null);
+const printGraph =()=>{
+  html2canvas(inputRef.current).then((canvas) => {
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF('p', 'pt', 'a4', false);
+    pdf.addImage(imgData, "JPEG", 0, 0,590,990, undefined, false);
+    pdf.save("Download_Graphs.pdf");
+  });
+}
+
   const table = {
 
   };
   
   return (
-    <div>
+    <div ref={inputRef}>
       <h3>Graphs</h3>
       <div className="flex-container">
         <div>
@@ -68,7 +81,9 @@ const Graph = () => {
           <p>Table</p>
           <ReactEcharts option={table} />
         </div>
+        
       </div>
+      <button className="printBtn" onClick={printGraph}>Download</button>
     </div>
   );
 
