@@ -1,11 +1,12 @@
-import React from 'react';
+import React,{ useRef } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import "./Graph.css"
 import Pie from "./Pie"
 import Gauge from "./Gauge"
 import SingleStat from "./SingleStat"
 import * as echarts from 'echarts';
-
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 // Heatmap Data Feed section------------
 const hours = [
@@ -83,7 +84,17 @@ function renderItem(params, api) {
 
 //end
 
+
 const Graph = () => {
+  const inputRef = useRef(null);
+const printGraph =()=>{
+  html2canvas(inputRef.current).then((canvas) => {
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF('p', 'pt', 'a4', false);
+    pdf.addImage(imgData, "JPEG", 0, 0,590,990, undefined, false);
+    pdf.save("Download_Graphs.pdf");
+  });
+}
   var series = [{
     name: 'M1',
     data: [100, 115, 165, 107, 67]
@@ -652,7 +663,7 @@ const Graph = () => {
     ],
   };
   return (
-    <div>
+    <div ref={inputRef}>
       <h3>Graphs</h3>
       <div className="flex-container">
         <div>
@@ -697,7 +708,9 @@ const Graph = () => {
           <p>Table</p>
           <ReactEcharts option={table} />
         </div>
+        
       </div>
+      <button className="printBtn" onClick={printGraph}>Download</button>
     </div>
   );
 
