@@ -2,6 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./../Pages/Login/index";
 import License from "./../Pages/License/index";
 import Graph from "./../Pages/Graph/Graph";
+import "rsuite/dist/rsuite.min.css";
+
 
 const Router = () => {
   return (
