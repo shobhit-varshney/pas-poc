@@ -19,8 +19,8 @@ import { jsPDF } from "jspdf";
 
 
 
-const Graph = () => {
- 
+
+const Graph = (props) => {
 
 const printGraph =()=>{
 //   html2canvas(inputRef.current).then((canvas) => {
