@@ -13,7 +13,9 @@ function Point(props){
   //console.log("fetch",data);
  
   useEffect(() => {
+
     fetch(`https://localhost:7239/InfluxClient?query=select * from airSensors where time>'${props.date.Range[0].toISOString()}' and time < '${props.date.Range[1].toISOString()}' group by *`)
+
       .then(results => results.json())
       .then(data => {
         setDataList(data);
