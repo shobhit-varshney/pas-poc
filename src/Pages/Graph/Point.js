@@ -2,22 +2,26 @@ import React,{ useEffect, useState} from "react";
 import GetData from "./GetData";
 import ReactEcharts from "echarts-for-react"; 
 import { time } from "echarts";
+import useFetch from "./useFetch";
 
-function Point(){
+function Point(props){
+  console.log("pointprops",props.date.Range)
+  const [dataList, setDataList] = useState();
 
-  const [dataList, temp] = useState();
+  //const data = useFetch("https://localhost:7239/InfluxClient?query=t");
+
+  //console.log("fetch",data);
+ 
   useEffect(() => {
-    fetch('https://localhost:7239/InfluxClient?query=t')
+    fetch(`https://localhost:7239/InfluxClient?query=select * from airSensors where time> ${props.date.Range[0]} and time < ${props.date.Range[1]} - 1d group by *`)
       .then(results => results.json())
       .then(data => {
-        temp(
-          data
-      );
-       console.log("data",data)
+        setDataList(data);
+       console.log("data called")
       });
-  }, []);
-      console.log(dataList)
+  }, [props.date.Range]);
 
+  console.log("dataList",dataList);
   
     const point = {
         title: {

@@ -23,6 +23,7 @@ import Table from './Table';
 
 const Graph = (props) => {
 
+  console.log("props",props)
 
   const printGraph = () => {
     //   html2canvas(inputRef.current).then((canvas) => {
@@ -50,12 +51,6 @@ const Graph = (props) => {
 
         const isLast = graphEle.length === i + 1;
 
-        //   if(isLast){
-        //   pdf.save("Download_Graphs.pdf")
-        // } else {
-        //   pdf.addPage()
-        // }
-
         isLast ? pdf.save("Download_Graphs.pdf") : pdf.addPage()
 
       });
@@ -80,7 +75,7 @@ const Graph = (props) => {
         </div>
 
         <div>
-          <Point></Point>
+        <Point date={props}></Point>
         </div>
 
         <div>
