@@ -14,7 +14,7 @@ const Export = (props) => {
     console.log("props", props)
 
     const printGraph = () => {
-        //setLoading(true);
+        setLoading(true);
         const graphEle = document.querySelectorAll(".flex-container, .flex-container-point")
         const pdf = new jsPDF('l', 'pt', 'a4', false);
         console.log("graphEle", graphEle.length);
@@ -30,7 +30,7 @@ const Export = (props) => {
 
                 const isLast = graphEle.length === i + 1;
 
-                isLast ? pdf.save("Download_Graphs.pdf") : pdf.addPage()
+                isLast ? pdf.save("Download_Graphs.pdf") && setLoading(false) : pdf.addPage();
 
             });
         })
