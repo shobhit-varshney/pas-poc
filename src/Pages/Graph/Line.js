@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 
+
 function Line(){
     const line = {
         title: {
@@ -8,7 +9,8 @@ function Line(){
           left: 'center'
         },
         xAxis: [{
-          type: 'category',
+         type: "category",
+          data: [ '10/4','10/7','10/10','10/13','10/16','10/19','10/22','10/25','10/28'],
           boundaryGap: false,
     
           axisLine: {
@@ -20,7 +22,7 @@ function Line(){
             onZero: true
           },
           axisLabel: {
-            color: "black"
+            color: "white"
           },
           onZero: true
         }],
@@ -36,29 +38,20 @@ function Line(){
             smooth: true,
             color: "yellow",
             width: 5,
-            markLine: {
-              symbol: ['none', 'none'],
-              label: { show: false },
-              data: [
-                { xAxis: 0 },
-                { xAxis: 5000 },
-                { xAxis: 7500 },
-                { xAxis: 1000 },
-    
-              ],
-              lineStyle: {
-                type: 'solid',
-                color: 'black'
-              }
+            lineStyle:{
+
+              width:6
+
             },
-            data: [0, 5000, 7500, 1000],
+          
+            data: [0, 1000,1000,1000,2000, 3000, 5000,5000,5200,7000,7200],
     
           }
         ]
     
       };
     
-    return <ReactEcharts option={line}/>
+    return <ReactEcharts theme={'dark'} option={line}/>
 }
 
 export default Line;
