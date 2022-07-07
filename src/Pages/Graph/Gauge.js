@@ -1,21 +1,27 @@
 import React from "react";
 
 import ReactEcharts from "echarts-for-react";
-function Gauge() {
+function Gauge(props) {
   const option = {
     title: {
-      top: 10,
+      text: 'Availability',
       left: 'center',
-      text: 'Availability'
+      
+      textStyle:{
+        color: 'white',
+        fontSize: 14,
+      }
+      
     },
     series: [
       {
         type: 'gauge',
-        center: ['50%', '60%'],
+        center: ['50%', '45%'],
         startAngle: 180,
         endAngle: 0,
         min: 0,
         max: 100,
+        radius: "50%",
         axisLine: {
           lineStyle: {
             width: 10,
@@ -36,7 +42,7 @@ function Gauge() {
           show: false
         },
         axisLabel: {
-          color: '#464646',
+          color: 'white',
           fontSize: 15,
           distance: -60,
           formatter: function (value) {
@@ -57,7 +63,8 @@ function Gauge() {
           fontSize: 30
         },
         detail: {
-          fontSize: 30,
+          fontSize: 20,
+          color:"white",
           offsetCenter: [0, '-10%'],
           valueAnimation: true,
           formatter: function (value) {
@@ -66,25 +73,25 @@ function Gauge() {
         },
         data: [
           {
-            value: 0.2,
+            value: parseInt(props.value) / 100,
             name: ''
           }
         ]
       },
       {
         type: 'gauge',
-        center: ['45%', '60%'],
-        radius:'45%',
+        center: ['50%', '45%'],
+        radius: "40%",
         startAngle: 180,
         endAngle: 0,
         min: 0,
         max: 100,
         itemStyle: {
-          color: '#FD7347'
+        color: props.risk,
         },
         progress: {
           show: true,
-          width: 20
+          width: 18
         },
         pointer: {
           show: false
@@ -106,12 +113,12 @@ function Gauge() {
         },
         data: [
           {
-            value: 20
+            value: parseInt(props.value, 10)
           }
         ]
       }
     ]
   };
-  return <ReactEcharts theme={'dark'} option={option} />;
+  return <ReactEcharts option={option} />;
 }
 export default Gauge;
