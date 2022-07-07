@@ -35,9 +35,9 @@ function LCD(){
             data: [18203, 23489, 29034, 34970, 31744, 30230],
             showBackground: true,
           },
-        ],
+        ]
       };
-    return <ReactEcharts option={lcd} />;
+    return <ReactEcharts theme={'dark'} option={lcd} />;
 }
 
 export default LCD;

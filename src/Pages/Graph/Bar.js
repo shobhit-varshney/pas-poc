@@ -12,6 +12,7 @@ function Bar(){
         xAxis: [
           {
             type: 'category',
+            show:false,
             axisLabel: {
               inside: false,
               color: '#fff'
@@ -24,11 +25,33 @@ function Bar(){
             },
           }
         ],
+        grid: {
+          top: '20%',
+          height: '60%',
+          widht: '70%',
+          right: '24%'
+        },
         legend: {
-          data: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6'],
+          data: ['Machine1', 'Machine2', 'Machine3', 'Machine4', 'Machine5', 'Machine6'],
           orient: "vertical",
           right: "0%",
-          top: "25%"
+          top: "24%",
+          formatter: (name) => {
+            var value = bar.series.filter((row) => row.name === name)[0].data;
+            var val;
+           
+            value.forEach((element) => {
+             if(element!=null){
+              val=element;
+             }
+            });
+
+            return (
+
+              name + ' ' + val
+
+            );
+          }
         },
         yAxis: [
           {
@@ -37,39 +60,39 @@ function Bar(){
         ],
         series: [
           {
-            name: 'M1',
+            name: 'Machine1',
             type: 'bar',
             stack: 'stack',
-            data: [3000, , , , , , ,]
+            data: [3400, , , , , , ,]
           }, {
-            name: 'M2',
+            name: 'Machine2',
             type: 'bar',
             stack: 'stack',
-            data: [, 2500, , , , , ,]
+            data: [, 2400, , , , , ,]
           }, {
-            name: 'M3',
+            name: 'Machine3',
             type: 'bar',
             stack: 'stack',
-            data: [, , 2000, , , , ,]
+            data: [, , 1600, , , , ,]
           }, {
-            name: 'M4',
+            name: 'Machine4',
             type: 'bar',
             stack: 'stack',
-            data: [, , , 1500, , , ,]
+            data: [, , , 1800, , , ,]
           }, {
-            name: 'M5',
+            name: 'Machine5',
             type: 'bar',
             stack: 'stack',
-            data: [, , , , 1000, , ,]
+            data: [, , , , 900, , ,]
           }, {
-            name: 'M6',
+            name: 'Machine6',
             type: 'bar',
             stack: 'stack',
-            data: [, , , , , 500, ,]
+            data: [, , , , , 1000, ,]
           }
         ]
       };
-      return <ReactEcharts option={bar} />;
+      return <ReactEcharts theme={'dark'} option={bar} />;
     
 }
 export default Bar;
