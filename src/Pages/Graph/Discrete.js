@@ -79,7 +79,11 @@ function Discrete(){
         },
         title: {
           text: 'Machine State',
-          left: 'center'
+          left: 'center',
+          textStyle:{
+            color: 'white',
+            fontSize: 14,
+          }
         },
         grid: {
           height: 150,
@@ -89,13 +93,17 @@ function Discrete(){
           min: startTime,
           scale: true,
           axisLabel: {
+            color: "white",
             formatter: function (val) {
               return (new Date(val)).toLocaleTimeString();
             }
           }
         },
         yAxis: {
-          data: categories
+          data: categories,
+          axisLabel: {
+            color: "white"
+          },
         },
         series: [
           {
