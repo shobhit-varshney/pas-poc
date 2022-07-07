@@ -88,7 +88,7 @@ function Point(props){
       };
     
 
-    return <ReactEcharts option={point} />;
+    return <ReactEcharts theme={'dark'} option={point} />;
 
 }
 export default Point;

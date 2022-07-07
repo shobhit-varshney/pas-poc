@@ -3,7 +3,11 @@ import React from "react";
 import ReactEcharts from "echarts-for-react";
 function Gauge() {
   const option = {
-
+    title: {
+      top: 10,
+      left: 'center',
+      text: 'Availability'
+    },
     series: [
       {
         type: 'gauge',
@@ -69,7 +73,8 @@ function Gauge() {
       },
       {
         type: 'gauge',
-        center: ['50%', '60%'],
+        center: ['45%', '60%'],
+        radius:'45%',
         startAngle: 180,
         endAngle: 0,
         min: 0,
@@ -107,6 +112,6 @@ function Gauge() {
       }
     ]
   };
-  return <ReactEcharts option={option} />;
+  return <ReactEcharts theme={'dark'} option={option} />;
 }
 export default Gauge;
