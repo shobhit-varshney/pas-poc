@@ -123,6 +123,6 @@ function Discrete(){
         ]
       };
     
-    return <ReactEcharts theme={'dark'} option={discrete}></ReactEcharts>
+    return <ReactEcharts option={discrete}></ReactEcharts>
 }
 export default Discrete;

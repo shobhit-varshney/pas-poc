@@ -2,7 +2,7 @@ import React from "react";
 import ReactEcharts from "echarts-for-react"; 
 
 var dataList = [
-    { value: 1048, name: 'CardSetUp1' },
+    { value: 1248, name: 'CardSetUp1' },
     { value: 735, name: 'CardSetUp2' },
     { value: 580, name: 'CardSetUp3' },
     { value: 484, name: 'CardSetUp4' },
@@ -28,14 +28,43 @@ var dataList = [
     { value: 1000, name: 'CardSetUp24' }
 
   ];
-function Pie() { 
+
+  var dataList2 = [
+    { value: 248, name: 'JobSetUp1' },
+    { value: 535, name: 'JobSetUp2' },
+    { value: 680, name: 'JobSetUp3' },
+    { value: 384, name: 'JobSetUp4' },
+    { value: 500, name: 'JobSetUp5' },
+    { value: 20, name: 'JobSetUp6' },
+    { value: 304, name: 'JobSetUp7' },
+    { value: 65, name: 'JobSetUp8' },
+    { value: 20, name: 'JobSetUp9' },
+    { value: 184, name: 'JobSetUp10' },
+    { value: 100, name: 'JobSetUp11' },
+    { value: 102, name: 'JobSetUp12' },
+    { value: 748, name: 'JobSetUp13' },
+    { value: 450, name: 'JobSetUp14' },
+    { value: 100, name: 'JobSetUp15' },
+    { value: 144, name: 'JobSetUp16' },
+    { value: 190, name: 'JobSetUp17' },
+    { value: 490, name: 'JobSetUp18' },
+    { value: 408, name: 'JobSetUp19' },
+    { value: 25, name: 'JobSetUp20' },
+    { value: 180, name: 'JobSetUp21' },
+    { value: 144, name: 'JobSetUp22' },
+    { value: 10, name: 'JobSetUp23' },
+    { value: 600, name: 'JobSetUp24' }
+
+  ];
+function Pie(props) { 
 const option = {
     title: {
-      text: 'Cards by Card Setup',
+      text: props.title,
       subtext: '',
-      left: 'center',
+      left: '20%',
       textStyle: {
-        fontSize: 13
+        fontSize: 14,
+        color: 'white',
       }
     },
     tooltip: {
@@ -43,10 +72,15 @@ const option = {
     },
     legend: {
       orient: 'vertical',
-      right: 'right',
+      right: '5%',
+      textStyle: {
+        fontSize: 13,
+        color: 'white',
+      },
       type: 'scroll',
       formatter: name => {
-        var value = dataList.filter(row => row.name === name)[0].value
+        let ele = props.type=="dataList"?dataList:dataList2
+        var value =  ele.filter(row => row.name === name)[0].value
         return name + '    ' + value;
       }
     },
@@ -54,9 +88,11 @@ const option = {
       {
         name: '',
         type: 'pie',
-        radius: '50%',
-        data: dataList,
+        radius: '60%',
+        center: ['35%', '50%'],
+        data: props.type=="dataList"?dataList:dataList2,
           itemStyle: {
+            
             normal : {
                 label : {
                           show : false
@@ -69,7 +105,7 @@ const option = {
         }
     ]
   };  
-return <ReactEcharts theme={'dark'} option={option} />;
+return <ReactEcharts option={option} />;
 } 
 export default Pie;
 

@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./../Pages/Login/index";
 import License from "./../Pages/License/index";
+import ReactGrid from "./../Pages/Graph/ReactGrid"
 import Graph from "./../Pages/Graph/Graph";
 import "rsuite/dist/rsuite.min.css";
 
@@ -10,7 +11,8 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<Login />} />
      {/*<Route path="graph" element={<Graph/>} /> */}
-      <Route path="graphs" element={<License />} />      
+      <Route path="graphs" element={<License />} />  
+      <Route path="ReactGrid" element={<ReactGrid />} />     
       <Route path="/*" element={<h1>Page not found</h1>} />
     </Routes>
   );

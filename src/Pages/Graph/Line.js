@@ -6,7 +6,11 @@ function Line(){
     const line = {
         title: {
           text: 'Production Progress -All',
-          left: 'center'
+          left: 'center',
+          textStyle: {
+            fontSize: 14,
+            color: 'white',
+          }
         },
         xAxis: [{
          type: "category",
@@ -28,7 +32,10 @@ function Line(){
         }],
         yAxis: {
           min: 0,
-          type: 'value'
+          type: 'value',
+          axisLabel: {
+            color: "white"
+          },
         },
         series: [
     
@@ -40,18 +47,18 @@ function Line(){
             width: 5,
             lineStyle:{
 
-              width:6
+              width:5
 
             },
           
-            data: [0, 1000,1000,1000,2000, 3000, 5000,5000,5200,7000,7200],
+            data: [0, 1000,1000,2000, 3000, 5000,5000,5200,7000,7200],
     
           }
         ]
     
       };
     
-    return <ReactEcharts theme={'dark'} option={line}/>
+    return <ReactEcharts   option={line}/>
 }
 
 export default Line;

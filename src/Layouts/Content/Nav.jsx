@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -20,13 +20,16 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
+import Button from '@mui/material/Button';
+import SaveIcon from '@mui/icons-material/Save';
+import React,{useState , useEffect} from 'react';
 
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(0),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -68,7 +71,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function Nav({ children }) {
+export default function Nav({parentCallback,children}) {
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
@@ -80,6 +84,10 @@ export default function Nav({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const saveLayout =()=>{
+    parentCallback(true);
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -96,12 +104,18 @@ export default function Nav({ children }) {
             <MenuIcon />
           </IconButton> */}
           <Grid container alignItems="center">
-            <Grid item xs={11}>
+            <Grid item md={10}>
               <Typography variant="label" noWrap component="div">
                 Entrust
               </Typography>
             </Grid>
             <Grid item>
+                     
+                       
+                        
+            <Tooltip title="Save Layout">
+            <Button variant="contained" color="secondary"  startIcon={<SaveIcon />} onClick={saveLayout}>Save</Button>     
+            </Tooltip>              
               <Tooltip title="Admin">
               <IconButton>
                 <AccountCircle sx={{ color: "#fff" }} />
