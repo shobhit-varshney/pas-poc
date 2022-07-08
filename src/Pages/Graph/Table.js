@@ -7,7 +7,12 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import { StyledEngineProvider } from '@mui/material/styles';
 import clsx from 'clsx';
-import "./Graph.css"; 
+
+import ProgressBar from '../../Components/Progress';
+import { useState, useEffect } from "react";
+import { COLUMNS_DIMENSION_PROPERTIES } from '@mui/x-data-grid/hooks/features/columns/gridColumnsUtils';
+
+
 
 function isOverflown(element) {
     return (
@@ -141,57 +146,308 @@ function isOverflown(element) {
      */
     value: PropTypes.string,
   };
-const columns = [
-  { field: 'id', headerName: 'D_machineId', width: 100,renderCell: renderCellExpand,headerClassName:'header-background-color'
-},
-  { field: 'Percentile', headerName: '95Percentile', width: 100,headerClassName:'header-background-color' },
-  { field: 'max', headerName: 'Max', width: 100,headerClassName:'header-background-color' },
+
+var column =[]
+
+var dataList = [
   {
-    field: 'min',
-    headerName: 'Min',
-    type: 'number',
-    width: 100,
-    headerClassName:'header-background-color'
-  },
-  {
-    field: 'mean',
-    headerName: 'Mean',
-    width: 179,
-    headerClassName:'header-background-color'
-    // cellClassName: (params) => {
-        
-    //     return clsx('super-app-positive', {
-    //     //   negative: params.row.min < 0,
-    //       positive: params.row.min > 0
-    //     });
-    //   }
+    "name": null,
+    "type": "scatter",
+    "symbolSize": 5,
+    "data": [],
+    "seriesData": [
+      {
+        "name": "earthquake",
+        "tags": null,
+        "columns": [
+          "time",
+          "cdi",
+          "code",
+          "depth",
+          "detail",
+          "dmin",
+          "felt",
+          "gap",
+          "id",
+          "ids",
+          "lat",
+          "lon",
+          "mag",
+          "magType",
+          "net",
+          "nst",
+          "place",
+          "rms",
+          "sig",
+          "sources",
+          "status",
+          "title",
+          "tsunami",
+          "types",
+          "url"
+        ],
+        "values": [
+          [
+            "2022-06-30T04:31:13.21Z",
+            null,
+            "40294040",
+            90.62,
+            "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40294040.geojson",
+            0.06568,
+            null,
+            77,
+            "ci40294040",
+            ",ci40294040,",
+            33.2965,
+            -116.7278333,
+            0.49,
+            "ml",
+            "ci",
+            14,
+            "7km NNE of Lake Henshaw, CA",
+            0.18,
+            4,
+            ",ci,",
+            "automatic",
+            "M 0.5 - 7km NNE of Lake Henshaw, CA",
+            0,
+            ",nearby-cities,origin,phase-data,scitech-link,",
+            "https://earthquake.usgs.gov/earthquakes/eventpage/ci40294040"
+          ],
+          [
+            "2022-06-30T04:33:02.337Z",
+            null,
+            "00841972",
+            30,
+            "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nn00841972.geojson",
+            0.406,
+            null,
+            92.23,
+            "nn00841972",
+            ",nn00841972,",
+            39.3962,
+            -118.097,
+            1.5,
+            "ml",
+            "nn",
+            13,
+            "53 km E of Fallon Station, Nevada",
+            0.1452,
+            35,
+            ",nn,",
+            "automatic",
+            "M 1.5 - 53 km E of Fallon Station, Nevada",
+            0,
+            ",origin,phase-data,",
+            "https://earthquake.usgs.gov/earthquakes/eventpage/nn00841972"
+          ],
+            [
+              "2022-09-30T04:31:13.21Z",
+              null,
+              "40294540",
+              50.62,
+              "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40294040.geojson",
+              0.06568,
+              null,
+              33,
+              "ci40294040",
+              ",ci40294040,",
+              33.2965,
+              -116.7278333,
+              0.49,
+              "ml",
+              "ci",
+              14,
+              "7km NNE of Lake Henshaw, CA",
+              0.18,
+              4,
+              ",ci,",
+              "automatic",
+              "M 0.5 - 7km NNE of Lake Henshaw, CA",
+              0,
+              ",nearby-cities,origin,phase-data,scitech-link,",
+              "https://earthquake.usgs.gov/earthquakes/eventpage/ci40294049"
+            ],
+              [
+                "2022-06-30T04:34:13.21Z",
+                null,
+                "40294840",
+                19.62,
+                "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40294040.geojson",
+                0.06568,
+                null,
+                55,
+                "ci40294040",
+                ",ci40294040,",
+                34.2965,
+                -116.7278333,
+                0.49,
+                "ml",
+                "ci",
+                14,
+                "7km NNE of Lake Henshaw, CA",
+                0.18,
+                4,
+                ",ci,",
+                "automatic",
+                "M 0.5 - 7km NNE of Lake Henshaw, CA",
+                0,
+                ",nearby-cities,origin,phase-data,scitech-link,",
+                "https://earthquake.usgs.gov/earthquakes/eventpage/ci40294043"
+              ],
+                [
+                  "2022-07-30T04:31:13.21Z",
+                  null,
+                  "402666040",
+                  30.62,
+                  "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40294040.geojson",
+                  0.06568,
+                  null,
+                  73,
+                  "ci40294040",
+                  ",ci40294040,",
+                  33.2965,
+                  -116.7278333,
+                  0.49,
+                  "ml",
+                  "ci",
+                  14,
+                  "7km NNE of Lake Henshaw, CA",
+                  0.18,
+                  4,
+                  ",ci,",
+                  "automatic",
+                  "M 0.5 - 7km NNE of Lake Henshaw, CA",
+                  0,
+                  ",nearby-cities,origin,phase-data,scitech-link,",
+                  "https://earthquake.usgs.gov/earthquakes/eventpage/ci40299040"
+                ],
+                  [
+                    "2022-06-30T04:31:53.21Z",
+                    null,
+                    "40294046",
+                    40.62,
+                    "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40294040.geojson",
+                    0.06568,
+                    null,
+                    17,
+                    "ci40294040",
+                    ",ci40294040,",
+                    33.2965,
+                    -116.7278333,
+                    0.49,
+                    "ml",
+                    "ci",
+                    14,
+                    "7km NNE of Lake Henshaw, CA",
+                    0.18,
+                    4,
+                    ",ci,",
+                    "automatic",
+                    "M 0.5 - 7km NNE of Lake Henshaw, CA",
+                    0,
+                    ",nearby-cities,origin,phase-data,scitech-link,",
+                    "https://earthquake.usgs.gov/earthquakes/eventpage/ci40294940"
+                  ],
+                    [
+                      "2022-06-30T04:01:13.21Z",
+                      null,
+                      "40244040",
+                      90.62,
+                      "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40294040.geojson",
+                      0.06568,
+                      null,
+                      47,
+                      "ci40294040",
+                      ",ci40294040,",
+                      33.2965,
+                      -116.7278333,
+                      0.49,
+                      "ml",
+                      "ci",
+                      14,
+                      "7km NNE of Lake Henshaw, CA",
+                      0.18,
+                      4,
+                      ",ci,",
+                      "automatic",
+                      "M 0.5 - 7km NNE of Lake Henshaw, CA",
+                      0,
+                      ",nearby-cities,origin,phase-data,scitech-link,",
+                      "https://earthquake.usgs.gov/earthquakes/eventpage/ci40294040"
+                    ],
+                      [
+                        "2022-06-30T04:21:13.21Z",
+                        null,
+                        "40294040",
+                        90.62,
+                        "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40294040.geojson",
+                        0.06568,
+                        null,
+                        77,
+                        "ci40294040",
+                        ",ci40294040,",
+                        33.2965,
+                        -116.7278333,
+                        0.49,
+                        "ml",
+                        "ci",
+                        14,
+                        "7km NNE of Lake Henshaw, CA",
+                        0.18,
+                        4,
+                        ",ci,",
+                        "automatic",
+                        "M 0.5 - 7km NNE of Lake Henshaw, CA",
+                        0,
+                        ",nearby-cities,origin,phase-data,scitech-link,",
+                        "https://earthquake.usgs.gov/earthquakes/eventpage/ci40294840"
+                      ]
+        ]
+      }
+    ]
   }
-];
-
-const rows = [
-  { id: "Mandatory zero administration ability",Percentile: '12.8s', max: '18.8s', min: '43.2s', mean: "12.23s" },
-  { id: "Machine2", Percentile: '13.8s',max: '17.8s', min: '34.2s', mean: "12.3s" },
-  { id: "Machine3", Percentile: '14.8s',max: '16.8s', min: '432.2s', mean: "13.3s" },
-  { id: "Machine4", Percentile: '18.8s',max: '15.8s', min: '23.2s', mean: "16.3s" },
-  { id: "Machine5",Percentile: '17.8s', max: '14.8s', min: '13.2s', mean: "32.2s" },
-  { id: "Machine6", Percentile: '16.8s',max: '13.8s', min: "12.2s", mean: "15.0s" },
- 
-];
-
-
+]
 
 export default function Table() {
+  // const [dataList, setState] = useState({});
+  // useEffect(() => {
+  //   fetch("https://localhost:7239/InfluxClient?query=select * from earthquake").then((res) => res.json())
+  //   .then(
+  //     (result) => {
+  //       setState({
+  //             isLoaded: true,
+  //             dataList: result
+  //         });
+  //     })    
+  // }, []);
+  var temp = dataList[0].seriesData[0].columns
+  var values = dataList[0].seriesData[0].values
+    for(var i =0; i<temp.length; i++){
+      
+      if(i==3){
+        column[i] = {field: i, headerName: temp[i], width: 200,renderCell: (params) =>  { return  <ProgressBar progress={Number(params.row[3])} ></ProgressBar>}}
+      }
+    else if(i==7){
+        column[i] = {field: i, headerName: temp[i], width: 200,renderCell: (params) =>  {return  <ProgressBar progress={Number(params.row[7])} ></ProgressBar>}}
+      }
+      else{
+      column[i] = {field: i, headerName: temp[i], width: 100,renderCell: renderCellExpand}}
+      
+    }
+
   return (
-    <div style={{  height: 320, width: '100%' }}>
-       <p className='center'>Chip Perso TImes By D_MachID</p>
+
+      <div style={{ height: 350, width: '100%' }}>
       <DataGrid
-     
-        rows={rows}
-        columns={columns}
-        pageSize={5}
+        rows={values}
+        columns={column}
+        pageSize={7}
         hideFooter
         showCellRightBorder
         rowsPerPageOptions={[]}
+        getRowId={(row) => row[0]}
+
         sx={{
         
           backgroundColor:'#1E1C1B',
